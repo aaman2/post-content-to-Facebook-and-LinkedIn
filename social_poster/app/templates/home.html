@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Social Poster</title>
+</head>
+<body>
+    <h1>Link Your Accounts</h1>
+    <a href="{{ url_for('oauth.login_facebook') }}">Link Facebook</a>
+    <a href="{{ url_for('oauth.login_linkedin') }}">Link LinkedIn</a>
+
+    {% if session.get('facebook_token') and session.get('linkedin_token') %}
+        <h2>Post to Facebook and LinkedIn</h2>
+        <form action="{{ url_for('main.share') }}" method="post">
+            <textarea name="content" rows="4" cols="50"></textarea>
+            <button type="submit">Share</button>
+        </form>
+    {% endif %}
+</body>
+</html>
